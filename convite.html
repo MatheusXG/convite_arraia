@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>3º Arraiá da Vila do Chaves</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Nunito:wght@700;800;900&display=swap');
+
+    :root {
+      --bg-1: #120401;
+      --bg-2: #2a0e04;
+      --bg-3: #5f280d;
+      --gold-1: #ffd66a;
+      --gold-2: #f3a022;
+      --cream: #fff3cb;
+      --cream-2: #ffe6a8;
+      --green-1: #25d366;
+      --green-2: #128c48;
+      --blue-1: #52b6dd;
+      --blue-2: #1f81ab;
+      --brown: #351100;
+      --shadow: rgba(0, 0, 0, .35);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #0a0200;
+      font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      display: grid;
+      place-items: center;
+    }
+
+    .invite {
+      position: relative;
+      width: min(100vw, 430px);
+      height: 100dvh;
+      min-height: 680px;
+      max-height: 950px;
+      overflow: hidden;
+      isolation: isolate;
+      background: var(--bg-1);
+      box-shadow: 0 0 44px rgba(0, 0, 0, .5);
+    }
+
+    /* fundo usando a própria imagem enviada */
+    .invite::before {
+      content: "";
+      position: absolute;
+      inset: -30px;
+      z-index: 0;
+      background:
+        linear-gradient(180deg, rgba(18, 4, 1, .04), rgba(18, 4, 1, .92)),
+        url("./assets/convite_festa_junina.png") center top / cover no-repeat;
+      filter: blur(22px) brightness(.52) saturate(1.12);
+      transform: scale(1.08);
+      opacity: .98;
+    }
+
+    .invite::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background:
+        radial-gradient(circle at 50% 16%, rgba(255, 214, 106, .20), transparent 35%),
+        radial-gradient(circle at 22% 76%, rgba(243, 160, 34, .18), transparent 26%),
+        linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .06) 46%, rgba(0, 0, 0, .58) 67%, rgba(0, 0, 0, .9) 100%);
+      pointer-events: none;
+    }
+
+    .hero {
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 63.5%;
+      z-index: 2;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      pointer-events: none;
+    }
+
+    .hero img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: drop-shadow(0 18px 28px rgba(0, 0, 0, .44)) saturate(1.03) contrast(1.02);
+      -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 75%, rgba(0, 0, 0, .92) 84%, rgba(0, 0, 0, .4) 93%, transparent 100%);
+      mask-image: linear-gradient(to bottom, #000 0%, #000 75%, rgba(0, 0, 0, .92) 84%, rgba(0, 0, 0, .4) 93%, transparent 100%);
+    }
+
+    /* data mais visível, encaixada na arte */
+    .hero-date {
+      position: absolute;
+      top: 39.5%;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 4;
+      min-width: 230px;
+      max-width: 88%;
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(255, 214, 106, .98), rgba(243, 160, 34, .98));
+      color: var(--brown);
+      text-align: center;
+      box-shadow: 0 14px 26px rgba(0, 0, 0, .28), inset 0 1px 0 rgba(255, 255, 255, .38);
+      border: 1px solid rgba(255, 255, 255, .22);
+    }
+
+    .hero-date strong {
+      display: block;
+      font-family: 'Luckiest Guy', cursive;
+      font-size: clamp(20px, 5.8vw, 29px);
+      line-height: 1;
+      letter-spacing: .6px;
+    }
+
+    .hero-date span {
+      display: block;
+      margin-top: 4px;
+      font-size: clamp(10px, 2.6vw, 12px);
+      font-weight: 900;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      opacity: .88;
+    }
+
+    .fusion {
+      position: absolute;
+      left: -12%;
+      right: -12%;
+      top: 41.5%;
+      height: 28%;
+      z-index: 3;
+      background:
+        radial-gradient(ellipse at center,
+          rgba(255, 170, 49, .34) 0%,
+          rgba(103, 36, 8, .44) 36%,
+          rgba(20, 5, 1, .94) 76%,
+          rgba(20, 5, 1, 0) 100%);
+      filter: blur(10px);
+      pointer-events: none;
+    }
+
+    .content {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: clamp(88px, 10vh, 118px);
+      z-index: 5;
+      padding: 0 clamp(12px, 3.6vw, 18px) max(8px, env(safe-area-inset-bottom));
+    }
+
+    .panel {
+      position: relative;
+      overflow: hidden;
+      padding: 13px;
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg,
+          rgba(96, 36, 8, .70) 0%,
+          rgba(43, 14, 3, .94) 42%,
+          rgba(18, 5, 1, .985) 100%);
+      border: 1px solid rgba(255, 215, 104, .22);
+      border-bottom: 0;
+      box-shadow: 0 -20px 36px rgba(0, 0, 0, .22), inset 0 1px 0 rgba(255, 255, 255, .12);
+      backdrop-filter: blur(10px);
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(255, 214, 106, .15), transparent 42%),
+        linear-gradient(90deg, transparent, rgba(255, 255, 255, .04), transparent);
+      pointer-events: none;
+    }
+
+    .panel::after {
+      content: "";
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      top: 0;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, transparent, var(--gold-1), var(--gold-2), transparent);
+      box-shadow: 0 0 16px rgba(243, 160, 34, .55);
+    }
+
+    .panel-title {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      margin-bottom: 9px;
+    }
+
+    .panel-title strong {
+      display: block;
+      color: var(--cream);
+      font-family: 'Luckiest Guy', cursive;
+      font-size: clamp(19px, 5.1vw, 24px);
+      line-height: 1;
+      letter-spacing: .5px;
+      text-shadow: 0 3px 10px rgba(0, 0, 0, .28);
+    }
+
+    .panel-title span {
+      display: block;
+      margin-top: 5px;
+      color: rgba(255, 230, 169, .84);
+      font-size: clamp(10px, 2.5vw, 12px);
+      font-weight: 900;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .details {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .detail {
+      min-height: 70px;
+      padding: 10px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(255, 243, 203, .98), rgba(255, 222, 149, .95));
+      border: 1px solid rgba(255, 255, 255, .46);
+      box-shadow: 0 10px 22px rgba(0, 0, 0, .22), inset 0 1px 0 rgba(255, 255, 255, .72);
+      position: relative;
+      overflow: hidden;
+      transform: translateY(10px);
+      opacity: 0;
+      animation: enter .45s ease forwards;
+    }
+
+    .detail:nth-child(1) {
+      animation-delay: .05s
+    }
+
+    .detail:nth-child(2) {
+      animation-delay: .12s
+    }
+
+    .detail:nth-child(3) {
+      animation-delay: .19s
+    }
+
+    .detail:nth-child(4) {
+      animation-delay: .26s
+    }
+
+    @keyframes enter {
+      to {
+        transform: translateY(0);
+        opacity: 1
+      }
+    }
+
+    .detail::before {
+      content: "";
+      position: absolute;
+      right: -16px;
+      top: -16px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: .10;
+    }
+
+    .detail-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 18px;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .24), 0 6px 14px rgba(0, 0, 0, .18);
+    }
+
+    .detail h2 {
+      margin-top: 6px;
+      color: var(--brown);
+      font-size: 13px;
+      line-height: 1.05;
+      font-weight: 900;
+    }
+
+    .detail p {
+      margin-top: 3px;
+      color: rgba(52, 17, 0, .72);
+      font-size: 11px;
+      line-height: 1.08;
+      font-weight: 900;
+    }
+
+    .food {
+      color: #ad5710
+    }
+
+    .money {
+      color: #199754
+    }
+
+    .kids {
+      color: #1f81ab
+    }
+
+    .rule {
+      color: #c83c18
+    }
+
+    .food .detail-icon {
+      background: linear-gradient(135deg, #c86d16, #783106)
+    }
+
+    .money .detail-icon {
+      background: linear-gradient(135deg, #25b55d, #116c39)
+    }
+
+    .kids .detail-icon {
+      background: linear-gradient(135deg, #2f95c5, #0d5478)
+    }
+
+    .rule .detail-icon {
+      background: linear-gradient(135deg, #e24b21, #8f230d)
+    }
+
+    .cta {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 9px;
+      align-items: stretch;
+    }
+
+    .btn {
+      width: 100%;
+      min-height: 44px;
+      border: 0;
+      border-radius: 19px;
+      padding: 10px 10px;
+      cursor: pointer;
+      -webkit-tap-highlight-color: transparent;
+      display: grid;
+      grid-template-columns: 28px minmax(82px, auto);
+      align-items: center;
+      justify-content: center;
+      column-gap: 8px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.05;
+      text-align: center;
+      box-shadow: 0 12px 22px rgba(0, 0, 0, .24), inset 0 1px 0 rgba(255, 255, 255, .22);
+      transition: transform .15s ease, filter .15s ease;
+    }
+
+    .btn span {
+      display: block;
+      min-width: 82px;
+      max-width: 92px;
+      text-align: center;
+    }
+
+    .btn:active {
+      transform: scale(.97);
+      filter: brightness(.95);
+    }
+
+    .btn-icon {
+      width: 24px;
+      height: 24px;
+      display: block;
+      justify-self: center;
+      align-self: center;
+    }
+
+    .btn-wa {
+      color: #fff;
+      background: linear-gradient(135deg, var(--green-1), var(--green-2));
+      animation: waGlow 2.4s ease-in-out infinite;
+    }
+
+    @keyframes waGlow {
+
+      0%,
+      100% {
+        box-shadow: 0 12px 22px rgba(0, 0, 0, .24), 0 0 0 rgba(37, 211, 102, 0)
+      }
+
+      50% {
+        box-shadow: 0 12px 22px rgba(0, 0, 0, .24), 0 0 24px rgba(37, 211, 102, .45)
+      }
+    }
+
+    .btn-map {
+      color: #fff;
+      background: linear-gradient(135deg, var(--blue-1), var(--blue-2));
+    }
+
+    .note {
+      position: relative;
+      z-index: 1;
+      margin-top: 0;
+      text-align: center;
+      color: rgba(255, 230, 169, .86);
+      font-size: 11px;
+      font-weight: 900;
+      white-space: nowrap;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, .35);
+    }
+
+    /* rodapé + fogueira integrada */
+    .footer-fire {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 8px;
+      min-height: 42px;
+    }
+
+    .footer-fire::before,
+    .footer-fire::after {
+      content: "";
+      width: 42px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255, 214, 106, .55));
+    }
+
+    .footer-fire::after {
+      background: linear-gradient(90deg, rgba(255, 214, 106, .55), transparent);
+    }
+
+    .bonfire {
+      position: relative;
+      left: auto;
+      bottom: auto;
+      transform: scale(.58);
+      transform-origin: center bottom;
+      z-index: 2;
+      width: 72px;
+      height: 58px;
+      flex: 0 0 54px;
+      margin-top: -8px;
+      pointer-events: none;
+      opacity: .98;
+    }
+
+    .log {
+      position: absolute;
+      bottom: 0;
+      width: 42px;
+      height: 10px;
+      background: linear-gradient(180deg, #6d3b14, #4c240b);
+      border-radius: 10px;
+      box-shadow: 0 2px 0 rgba(255, 255, 255, .06) inset;
+    }
+
+    .log.left {
+      left: 8px;
+      transform: rotate(22deg)
+    }
+
+    .log.right {
+      right: 8px;
+      transform: rotate(-22deg)
+    }
+
+    .flame-outer,
+    .flame-inner {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+      animation: flicker 1.4s ease-in-out infinite;
+      filter: blur(.2px);
+    }
+
+    .flame-outer {
+      bottom: 12px;
+      width: 34px;
+      height: 48px;
+      background: radial-gradient(circle at 50% 70%, #fff6bf 0%, #ffd56f 26%, #ff9d1d 58%, #ff5f00 100%);
+      box-shadow: 0 0 26px rgba(255, 136, 26, .7);
+    }
+
+    .flame-inner {
+      bottom: 18px;
+      width: 18px;
+      height: 28px;
+      background: radial-gradient(circle at 50% 70%, #fffde6 0%, #ffe9a1 34%, #ffc241 70%, #ff8a00 100%);
+      animation-duration: 1s;
+    }
+
+    @keyframes flicker {
+
+      0%,
+      100% {
+        transform: translateX(-50%) scale(1) rotate(-2deg)
+      }
+
+      25% {
+        transform: translateX(-50%) scale(1.05, .96) rotate(2deg)
+      }
+
+      50% {
+        transform: translateX(-50%) scale(.96, 1.08) rotate(-1deg)
+      }
+
+      75% {
+        transform: translateX(-50%) scale(1.04, .98) rotate(1deg)
+      }
+    }
+
+    #embers {
+      position: absolute;
+      inset: 0;
+      z-index: 7;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .ember {
+      position: absolute;
+      left: 50%;
+      bottom: calc(72px + var(--start-y));
+      width: var(--size);
+      height: var(--size);
+      border-radius: 999px;
+      opacity: 0;
+      color: var(--color);
+      background: currentColor;
+      box-shadow:
+        0 0 8px currentColor,
+        0 0 18px rgba(255, 126, 0, .45);
+      animation: rise var(--duration) linear infinite;
+      animation-delay: var(--delay);
+      will-change: transform, opacity;
+    }
+
+    .ember.big {
+      filter: blur(.2px);
+      box-shadow:
+        0 0 10px currentColor,
+        0 0 26px rgba(255, 126, 0, .65);
+    }
+
+    @keyframes rise {
+      0% {
+        opacity: 0;
+        transform: translate(-50%, 0) scale(.45);
+      }
+
+      10% {
+        opacity: .95;
+      }
+
+      55% {
+        opacity: .9;
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate(calc(-50% + var(--drift)), -260px) scale(1.15);
+      }
+    }
+
+
+    /* Tela de abertura: resolve o bloqueio de autoplay dos celulares de forma elegante */
+    .intro-screen {
+      position: absolute;
+      inset: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background:
+        radial-gradient(circle at 50% 28%, rgba(255, 214, 106, .18), transparent 34%),
+        linear-gradient(180deg, rgba(18, 4, 1, .90), rgba(18, 4, 1, .98)),
+        url("./assets/convite_festa_junina.png") center top / cover no-repeat;
+      backdrop-filter: blur(8px);
+      transition: opacity .6s ease, visibility .6s ease, transform .6s ease;
+    }
+
+    .intro-screen.hide {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: scale(1.03);
+    }
+
+    .intro-card {
+      width: min(92%, 340px);
+      border-radius: 28px;
+      padding: 24px 18px 20px;
+      text-align: center;
+      background:
+        linear-gradient(180deg, rgba(255, 243, 203, .97), rgba(255, 222, 149, .94));
+      border: 1px solid rgba(255, 255, 255, .55);
+      box-shadow:
+        0 24px 50px rgba(0, 0, 0, .42),
+        inset 0 1px 0 rgba(255, 255, 255, .7);
+      position: relative;
+      overflow: hidden;
+      animation: introFloat 2.8s ease-in-out infinite;
+    }
+
+    .intro-card::before {
+      content: "";
+      position: absolute;
+      inset: -60%;
+      background: linear-gradient(45deg, transparent 40%, rgba(255, 255, 255, .28) 50%, transparent 60%);
+      animation: introShine 3.4s linear infinite;
+    }
+
+    @keyframes introFloat {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-6px)
+      }
+    }
+
+    @keyframes introShine {
+      from {
+        transform: translateX(-42%) rotate(12deg)
+      }
+
+      to {
+        transform: translateX(42%) rotate(12deg)
+      }
+    }
+
+    .intro-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .intro-badge {
+      width: 64px;
+      height: 64px;
+      margin: 0 auto 12px;
+      border-radius: 22px;
+      display: grid;
+      place-items: center;
+      font-size: 34px;
+      background: linear-gradient(135deg, #f3a022, #c85d16);
+      box-shadow: 0 10px 24px rgba(200, 93, 22, .35), inset 0 1px 0 rgba(255, 255, 255, .25);
+    }
+
+    .intro-card h1 {
+      font-family: 'Luckiest Guy', cursive;
+      color: #351100;
+      font-size: clamp(26px, 7vw, 34px);
+      line-height: .95;
+      letter-spacing: .5px;
+      margin-bottom: 8px;
+      text-shadow: 1px 1px 0 rgba(255, 255, 255, .35);
+    }
+
+    .intro-card p {
+      color: rgba(53, 17, 0, .75);
+      font-weight: 900;
+      font-size: 14px;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+
+    .intro-button {
+      width: 100%;
+      min-height: 54px;
+      border: 0;
+      border-radius: 18px;
+      background: linear-gradient(135deg, #25d366, #128c48);
+      color: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-size: 15px;
+      font-weight: 900;
+      cursor: pointer;
+      box-shadow: 0 14px 26px rgba(18, 140, 72, .28), inset 0 1px 0 rgba(255, 255, 255, .22);
+      -webkit-tap-highlight-color: transparent;
+      animation: introPulse 2.1s ease-in-out infinite;
+    }
+
+    @keyframes introPulse {
+
+      0%,
+      100% {
+        box-shadow: 0 14px 26px rgba(18, 140, 72, .28), 0 0 0 rgba(37, 211, 102, 0)
+      }
+
+      50% {
+        box-shadow: 0 14px 26px rgba(18, 140, 72, .28), 0 0 28px rgba(37, 211, 102, .55)
+      }
+    }
+
+    .intro-hint {
+      display: block;
+      margin-top: 10px;
+      color: rgba(53, 17, 0, .58);
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+
+    @media (max-height:740px) {
+      .hero {
+        height: 61.5%
+      }
+
+      .hero-date {
+        top: 37.5%;
+        padding: 9px 16px
+      }
+
+      .content {
+        bottom: clamp(46px, 5.8vh, 66px)
+      }
+
+      .panel {
+        padding: 13px
+      }
+
+      .details {
+        gap: 8px
+      }
+
+      .detail {
+        min-height: 70px;
+        padding: 9px
+      }
+
+      .detail p {
+        display: none
+      }
+
+      .footer-fire {
+        margin-top: 6px;
+        min-height: 34px
+      }
+
+      .note {
+        font-size: 10px
+      }
+
+      .btn {
+        min-height: 46px;
+        font-size: 12px;
+        grid-template-columns: 26px minmax(76px, auto);
+        column-gap: 7px;
+        padding: 9px 8px
+      }
+
+      .btn span {
+        min-width: 76px;
+        max-width: 86px
+      }
+
+      .bonfire {
+        transform: scale(.48);
+        margin-top: -12px
+      }
+
+      #embers {
+        z-index: 7
+      }
+    }
+
+    @media (max-height:675px) {
+      .panel-title span {
+        display: none
+      }
+
+      .content {
+        bottom: 26px
+      }
+
+      .detail {
+        min-height: 64px
+      }
+
+      .detail-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 18px
+      }
+
+      .footer-fire {
+        display: none
+      }
+    }
+
+    @media (min-width:431px) {
+      .invite {
+        border-radius: 28px;
+        height: min(100dvh, 950px);
+      }
+
+      .panel {
+        border-radius: 30px;
+        border-bottom: 1px solid rgba(255, 215, 104, .14);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="invite" aria-label="Convite do 3º Arraiá da Vila do Chaves">
+    <div class="intro-screen" id="introScreen">
+      <div class="intro-card">
+        <div class="intro-content">
+          <div class="intro-badge">🔥</div>
+          <h1>Preparado pro arraiá?</h1>
+          <p>Toque para abrir o convite com música e clima de festa junina.</p>
+          <button class="intro-button" type="button" id="startInviteBtn">
+            Abrir convite 🎶
+          </button>
+          <span class="intro-hint">3º Arraiá da Vila do Chaves</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero">
+      <img src="./assets/convite_festa_junina.png" alt="3º Arraiá da Vila do Chaves" />
+    </div>
+
+    <div class="hero-date">
+      <strong>27/06 • 20h</strong>
+      <span>Reserve essa data</span>
+    </div>
+
+    <div class="fusion"></div>
+
+    <div id="embers"></div>
+    <section class="content">
+      <div class="panel">
+        <div class="panel-title">
+          <strong>Informações do arraiá</strong>
+          <span>confira os detalhes</span>
+        </div>
+
+        <div class="details">
+          <article class="detail food">
+            <div class="detail-icon">🍲</div>
+            <h2>Prato típico</h2>
+            <p>Levar uma comida junina</p>
+          </article>
+
+          <article class="detail money">
+            <div class="detail-icon">💵</div>
+            <h2>R$ 20</h2>
+            <p>Valor por pessoa</p>
+          </article>
+
+          <article class="detail kids">
+            <div class="detail-icon">👦</div>
+            <h2>Criança não paga</h2>
+            <p>Até 13 anos</p>
+          </article>
+
+          <article class="detail rule">
+            <div class="detail-icon">🚫</div>
+            <h2>Convidado não convida</h2>
+            <p>Organização da festa</p>
+          </article>
+        </div>
+
+        <div class="cta">
+          <button class="btn btn-wa" type="button" onclick="openWhatsApp()"
+            aria-label="Confirmar presença pelo WhatsApp">
+            <svg class="btn-icon" viewBox="0 0 32 32" aria-hidden="true" fill="none">
+              <circle cx="16" cy="16" r="15" fill="rgba(255,255,255,.18)" />
+              <path fill="#fff"
+                d="M16.02 6.2c-5.28 0-9.55 4.2-9.55 9.38 0 1.67.45 3.31 1.3 4.76l-1.38 5.04 5.19-1.35a9.67 9.67 0 0 0 4.44 1.08c5.28 0 9.55-4.2 9.55-9.39 0-5.18-4.27-9.52-9.55-9.52Zm0 17.3a8.08 8.08 0 0 1-4.1-1.1l-.29-.17-3.08.8.82-2.98-.19-.3a7.76 7.76 0 0 1-1.2-4.17c0-4.28 3.56-7.78 8.03-7.78 4.43.04 8 3.52 8 7.92 0 4.28-3.6 7.78-7.99 7.78Zm4.4-5.88c-.24-.12-1.42-.7-1.64-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06a6.58 6.58 0 0 1-1.94-1.19 7.22 7.22 0 0 1-1.34-1.67c-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.28-.74-1.75-.2-.47-.4-.41-.54-.41h-.46c-.16 0-.42.06-.64.3-.22.24-.84.82-.84 2s.86 2.31.98 2.47c.12.16 1.68 2.66 4.15 3.62.59.25 1.05.4 1.41.51.59.19 1.12.16 1.55.1.47-.07 1.42-.58 1.62-1.13.2-.55.2-1.02.14-1.12-.06-.1-.22-.16-.46-.28Z" />
+            </svg>
+            <span>Confirmar<br>presença</span>
+          </button>
+
+          <button class="btn btn-map" type="button" onclick="openLocation()" aria-label="Ver localização da festa">
+            <svg class="btn-icon" viewBox="0 0 32 32" aria-hidden="true" fill="none">
+              <path fill="#fff"
+                d="M16 3c-4.63 0-8.38 3.75-8.38 8.38 0 6 7.14 14.41 7.44 14.76a1.23 1.23 0 0 0 1.88 0c.3-.35 7.44-8.77 7.44-14.76C24.38 6.75 20.63 3 16 3Zm0 11.56a3.18 3.18 0 1 1 0-6.36 3.18 3.18 0 0 1 0 6.36Z" />
+            </svg>
+            <p>Ver localização</p>
+          </button>
+        </div>
+
+        <div class="footer-fire">
+          <div class="note">VAI SER BÃO DEMAIS, SÔ!</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const MAPS_URL = 'https://maps.app.goo.gl/wDAVF3pmpN4H729x7';
+    const embersEl = document.getElementById('embers');
+    const colors = ['#fff1a8', '#ffd56f', '#ffb347', '#ff8a00', '#ff6a00'];
+
+    function createEmber(index) {
+      const el = document.createElement('span');
+      const isBig = Math.random() > 0.72;
+      el.className = isBig ? 'ember big' : 'ember';
+
+      const size = (isBig ? 4 : 2) + Math.random() * (isBig ? 5 : 4);
+      const left = 8 + Math.random() * 84;
+      const startY = Math.random() * 105;
+      const drift = (-90 + Math.random() * 180) + 'px';
+      const duration = 2.2 + Math.random() * 3.2;
+      const delay = Math.random() * 2.8;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+
+      el.style.setProperty('--size', size + 'px');
+      el.style.setProperty('--drift', drift);
+      el.style.setProperty('--duration', duration + 's');
+      el.style.setProperty('--delay', delay + 's');
+      el.style.setProperty('--color', color);
+      el.style.setProperty('--start-y', startY + 'px');
+      el.style.left = left + '%';
+
+      embersEl.appendChild(el);
+    }
+
+    for (let i = 0; i < 42; i++) createEmber(i);
+
+
+    /* =========================================================
+       MÚSICA DO CONVITE
+       ---------------------------------------------------------
+       Onde colocar a música:
+       - Coloque o arquivo dentro da pasta:
+         assets/musica.mp3
+
+       Onde configurar o arquivo:
+       - MUSIC_FILE define qual arquivo tocar.
+       - Deixe './assets/musica.mp3' se o arquivo tiver esse nome.
+
+       Onde escolher de qual tempo a música começa:
+       - MUSIC_START_SECONDS define o segundo inicial da música.
+       - Exemplos:
+         0  = começa do início
+         15 = começa a partir de 15 segundos
+         42 = começa a partir de 42 segundos
+
+       Observação:
+       - Em celular, a música começa após tocar em "Abrir convite 🎶",
+         porque o navegador bloqueia som automático sem interação.
+       ========================================================= */
+    const MUSIC_FILE = './assets/musica.mp3';
+    const MUSIC_START_SECONDS = 20; // <-- ALTERE AQUI o tempo inicial da música, em segundos.
+
+    let festaAudioStarted = false;
+    let festaAudioCtx = null;
+    let festaCustomAudio = null;
+
+    const melodiaFesta = [
+      ['G4', .22], ['A4', .22], ['B4', .28], ['D5', .32],
+      ['B4', .24], ['A4', .22], ['G4', .34], ['REST', .12],
+      ['G4', .22], ['A4', .22], ['B4', .28], ['E5', .32],
+      ['D5', .24], ['B4', .22], ['A4', .34], ['REST', .12],
+      ['B4', .22], ['D5', .22], ['E5', .28], ['G5', .32],
+      ['E5', .24], ['D5', .22], ['B4', .34], ['REST', .12],
+      ['A4', .22], ['B4', .22], ['D5', .28], ['B4', .32],
+      ['A4', .24], ['G4', .22], ['G4', .40], ['REST', .18]
+    ];
+
+    const baixoFesta = [
+      ['G2', .46], ['D3', .46], ['G2', .46], ['D3', .46],
+      ['C3', .46], ['G2', .46], ['D3', .46], ['G2', .46]
+    ];
+
+    function noteToFrequency(note) {
+      if (note === 'REST') return 0;
+      const notes = { C: 0, 'C#': 1, D: 2, 'D#': 3, E: 4, F: 5, 'F#': 6, G: 7, 'G#': 8, A: 9, 'A#': 10, B: 11 };
+      const match = note.match(/^([A-G]#?)(\d)$/);
+      if (!match) return 0;
+      const midi = (Number(match[2]) + 1) * 12 + notes[match[1]];
+      return 440 * Math.pow(2, (midi - 69) / 12);
+    }
+
+    function playTone(ctx, note, start, duration, type, gainValue) {
+      const freq = noteToFrequency(note);
+      if (!freq) return;
+
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, start);
+
+      gain.gain.setValueAtTime(0.0001, start);
+      gain.gain.exponentialRampToValueAtTime(gainValue, start + 0.015);
+      gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
+
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+
+      osc.start(start);
+      osc.stop(start + duration + 0.04);
+    }
+
+    function scheduleFestaLoop(ctx) {
+      const now = ctx.currentTime + 0.05;
+      let t = now;
+
+      melodiaFesta.forEach(([note, dur]) => {
+        playTone(ctx, note, t, dur * .92, 'triangle', 0.035);
+        t += dur;
+      });
+
+      let b = now;
+      while (b < t) {
+        baixoFesta.forEach(([note, dur]) => {
+          if (b < t) playTone(ctx, note, b, dur * .82, 'sine', 0.018);
+          b += dur;
+        });
+      }
+
+      setTimeout(() => scheduleFestaLoop(ctx), Math.max(1000, (t - now) * 1000 - 80));
+    }
+
+    async function startFestaMusic() {
+      if (festaAudioStarted) return;
+
+      /*
+        Se MUSIC_FILE estiver preenchido, o convite toca o seu arquivo.
+        O arquivo deve estar no caminho indicado, por exemplo:
+        ./assets/musica.mp3
+      */
+      if (MUSIC_FILE) {
+        try {
+          festaCustomAudio = new Audio(MUSIC_FILE);
+          festaCustomAudio.loop = true;
+          festaCustomAudio.volume = 0.62;
+
+          // Começa a música a partir do tempo escolhido em MUSIC_START_SECONDS.
+          festaCustomAudio.addEventListener('loadedmetadata', () => {
+            if (Number.isFinite(MUSIC_START_SECONDS) && MUSIC_START_SECONDS > 0) {
+              const safeStart = Math.min(MUSIC_START_SECONDS, Math.max(0, festaCustomAudio.duration - 1));
+              festaCustomAudio.currentTime = safeStart;
+            }
+          }, { once:true });
+
+          await festaCustomAudio.play();
+          festaAudioStarted = true;
+          return;
+        } catch (error) {
+          // Se o arquivo não carregar ou o navegador bloquear, cai na música gerada pelo código.
+          festaAudioStarted = false;
+        }
+      }
+
+      try {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContextClass) return;
+
+        festaAudioCtx = festaAudioCtx || new AudioContextClass();
+
+        if (festaAudioCtx.state === 'suspended') {
+          await festaAudioCtx.resume();
+        }
+
+        festaAudioStarted = true;
+        scheduleFestaLoop(festaAudioCtx);
+      } catch (error) {
+        festaAudioStarted = false;
+      }
+    }
+
+    function openInvitePresentation() {
+      const intro = document.getElementById('introScreen');
+      if (intro) intro.classList.add('hide');
+      startFestaMusic();
+    }
+
+    document.getElementById('startInviteBtn')?.addEventListener('click', openInvitePresentation, { once: true });
+    document.getElementById('startInviteBtn')?.addEventListener('touchstart', openInvitePresentation, { once: true, passive: true });
+
+
+    /* =========================================================
+       WHATSAPP DE CONFIRMAÇÃO
+       ---------------------------------------------------------
+       Onde colocar o número:
+       - Altere WHATSAPP_NUMBER abaixo.
+       - Use DDI + DDD + número, somente números.
+       - Exemplo Brasília/DF:
+         const WHATSAPP_NUMBER = '5561999999999';
+
+       Se deixar vazio, abre o WhatsApp sem destinatário fixo.
+       ========================================================= */
+    const WHATSAPP_NUMBER = '556184251036'; // <-- COLOQUE AQUI O NÚMERO DO WHATSAPP. Exemplo: '5561999999999'
+
+    function openWhatsApp() {
+      const text = 'Olá! Quero confirmar minha presença no 3º Arraiá da Vila do Chaves! 🤠🎉';
+
+      const whatsappUrl = WHATSAPP_NUMBER
+        ? 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(text)
+        : 'https://wa.me/?text=' + encodeURIComponent(text);
+
+      window.open(whatsappUrl, '_blank');
+    }
+
+    function openLocation() {
+      window.open(MAPS_URL, '_blank');
+    }
+  </script>
+</body>
+
+</html>
