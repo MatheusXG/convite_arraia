@@ -49,7 +49,7 @@
       position: relative;
       width: min(100vw, 430px);
       height: 100dvh;
-      min-height: 680px;
+      min-height: 100dvh;
       max-height: 950px;
       overflow: hidden;
       isolation: isolate;
@@ -106,13 +106,13 @@
     /* data mais visível, encaixada na arte */
     .hero-date {
       position: absolute;
-      top: 39.5%;
+      top: 42.8%;
       left: 50%;
       transform: translateX(-50%);
       z-index: 4;
-      min-width: 230px;
+      min-width: 208px;
       max-width: 88%;
-      padding: 10px 20px;
+      padding: 7px 17px;
       border-radius: 999px;
       background: linear-gradient(135deg, rgba(255, 214, 106, .98), rgba(243, 160, 34, .98));
       color: var(--brown);
@@ -124,14 +124,14 @@
     .hero-date strong {
       display: block;
       font-family: 'Luckiest Guy', cursive;
-      font-size: clamp(20px, 5.8vw, 29px);
+      font-size: clamp(18px, 5.1vw, 26px);
       line-height: 1;
       letter-spacing: .6px;
     }
 
     .hero-date span {
       display: block;
-      margin-top: 4px;
+      margin-top: 3px;
       font-size: clamp(10px, 2.6vw, 12px);
       font-weight: 900;
       letter-spacing: .15em;
@@ -143,7 +143,7 @@
       position: absolute;
       left: -12%;
       right: -12%;
-      top: 43.5%;
+      top: 44%;
       height: 28%;
       z-index: 3;
       background:
@@ -160,7 +160,7 @@
       position: absolute;
       left: 0;
       right: 0;
-      bottom: clamp(54px, 6.8vh, 76px);
+      bottom: clamp(34px, 5.2vh, 56px);
       z-index: 5;
       padding: 0 clamp(12px, 3.6vw, 18px) max(8px, env(safe-area-inset-bottom));
     }
@@ -168,7 +168,7 @@
     .panel {
       position: relative;
       overflow: hidden;
-      padding: 13px;
+      padding: 12px;
       border-radius: 28px;
       background:
         linear-gradient(180deg,
@@ -207,7 +207,7 @@
       position: relative;
       z-index: 1;
       text-align: center;
-      margin-bottom: 9px;
+      margin-bottom: 8px;
     }
 
     .panel-title strong {
@@ -239,8 +239,8 @@
     }
 
     .detail {
-      min-height: 70px;
-      padding: 10px;
+      min-height: 68px;
+      padding: 9px;
       border-radius: 20px;
       background: linear-gradient(180deg, rgba(255, 243, 203, .98), rgba(255, 222, 149, .95));
       border: 1px solid rgba(255, 255, 255, .46);
@@ -734,18 +734,141 @@
     }
 
 
+
+    /* Ajustes finais pensados para celular/WhatsApp */
+    @media (max-width: 430px) {
+      .invite {
+        width: 100vw;
+        height: 100dvh;
+        max-height: none;
+        border-radius: 0;
+      }
+
+      .hero {
+        height: 62%;
+      }
+
+      .hero-date {
+        top: 43.2%;
+        min-width: 202px;
+        padding: 7px 15px;
+      }
+
+      .hero-date strong {
+        font-size: clamp(18px, 5vw, 24px);
+      }
+
+      .hero-date span {
+        font-size: 10px;
+        letter-spacing: .12em;
+      }
+
+      .content {
+        bottom: clamp(22px, 3.5vh, 42px);
+      }
+
+      .panel {
+        padding: 12px;
+        border-radius: 26px;
+      }
+
+      .panel-title {
+        margin-bottom: 8px;
+      }
+
+      .details {
+        gap: 7px;
+      }
+
+      .detail {
+        min-height: 66px;
+        padding: 9px;
+        border-radius: 18px;
+      }
+
+      .detail-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 17px;
+        border-radius: 12px;
+      }
+
+      .detail h2 {
+        font-size: 12.6px;
+        margin-top: 5px;
+      }
+
+      .detail p {
+        font-size: 10px;
+      }
+
+      .cta {
+        gap: 8px;
+        margin-top: 8px;
+      }
+
+      .btn {
+        min-height: 44px;
+        padding: 9px 8px;
+        grid-template-columns: 25px minmax(74px, auto);
+        column-gap: 7px;
+        font-size: 12px;
+      }
+
+      .btn-icon {
+        width: 23px;
+        height: 23px;
+      }
+
+      .btn span {
+        min-width: 74px;
+        max-width: 86px;
+      }
+
+      .footer-fire {
+        margin-top: 6px;
+        min-height: 32px;
+      }
+
+      .note {
+        font-size: 10px;
+      }
+    }
+
+    @media (max-width: 380px), (max-height: 700px) {
+      .hero-date {
+        top: 42.8%;
+        padding: 6px 14px;
+      }
+
+      .content {
+        bottom: 16px;
+      }
+
+      .panel-title span,
+      .detail p,
+      .footer-fire {
+        display: none;
+      }
+
+      .detail {
+        min-height: 62px;
+      }
+    }
+
     @media (max-height:740px) {
       .hero {
         height: 61.5%
       }
 
       .hero-date {
-        top: 37.5%;
-        padding: 9px 16px
+        top: 42.5%;
+        min-width: 198px;
+        padding: 6px 14px
       }
 
       .content {
-        bottom: clamp(24px, 3.8vh, 42px)
+        bottom: clamp(14px, 3vh, 28px)
       }
 
       .panel {
@@ -803,7 +926,7 @@
       }
 
       .content {
-        bottom: 14px
+        bottom: 10px
       }
 
       .detail {
