@@ -709,7 +709,7 @@
       font-weight: 900;
       font-size: 14px;
       line-height: 1.25;
-      margin-bottom: 10px;
+      margin-bottom: max(2px, env(safe-area-inset-bottom));
     }
 
     .intro-button {
@@ -860,7 +860,7 @@
         <div class="intro-content">
           <div class="intro-badge">🔥</div>
           <h1>Preparado pro arraiá?</h1>
-          <!-- <p>Toque para abrir o convite com música e clima de festa junina.</p> -->
+          <p>Toque para abrir o convite com música e clima de festa junina.</p>
           <button class="intro-button" type="button" id="startInviteBtn">
             Abrir convite 🎶
           </button>
